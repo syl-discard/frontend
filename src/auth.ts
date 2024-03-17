@@ -1,3 +1,5 @@
+// src: https://authjs.dev/reference/sveltekit#usage
+
 import { SvelteKitAuth } from '@auth/sveltekit';
 import GoogleProvider from '@auth/core/providers/google';
 import {

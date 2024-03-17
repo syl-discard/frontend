@@ -3,7 +3,7 @@
 	import { page } from '$app/stores';
 </script>
 
-<h1>SvelteKit Home</h1>
+<h1>Discard Home</h1>
 <div>
 	{#if $page.data.session}
 		{#if $page.data.session.user?.image}
@@ -18,12 +18,12 @@
 			<strong>{$page.data.session.user?.name ?? 'User'}</strong>
 		</span>
 		<SignOut>
-			<div slot="submitButton" class="buttonPrimary">Sign out</div>
+			<div slot="submitButton">Sign out</div>
 		</SignOut>
 	{:else}
 		<span class="notSignedInText">You are not signed in</span>
 		<SignIn>
-			<div slot="submitButton" class="buttonPrimary">Sign in</div>
+			<div slot="submitButton">Sign in</div>
 		</SignIn>
 	{/if}
 </div>
