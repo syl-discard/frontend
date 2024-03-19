@@ -1,0 +1,31 @@
+# git files
+
+.git
+.git\*
+
+# ide files
+
+.vscode
+.idea
+.prettier*
+.eslint*
+
+# build files
+
+node_modules
+build
+
+# repsitory files
+
+README.md
+
+# docker files
+
+Dockerfile\*
+docker-compose.yml
+
+# project files
+
+.svelte-kit
+test-results
+.env

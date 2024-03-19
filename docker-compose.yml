@@ -1,0 +1,23 @@
+version: "3"
+
+# This compose file should be in the root of the project, with each 
+# repository of the organization in a separate folder.
+
+name: discard
+services:
+  frontend:
+    container_name: frontend
+    image: frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: "node"
+    environment:
+      - NODE_ENV=development
+      - ORIGIN=http://localhost:6969
+    env_file:
+      - .env
+    restart: unless-stopped
+    ports: 
+      - "6969:3000"
+    
