@@ -11,8 +11,8 @@ async function getUserData(accessToken: string) {
 }
 
 export const GET = async ({ url }: { url: URL }) => {
-	const redirectURL = 'http://localhost:5173/oauth';
-	const code = (await url.searchParams.get('code')) ?? '';
+	const redirectURL = env.BASE_URL + '/oauth';
+	const code = url.searchParams.get('code') ?? '';
 
 	try {
 		const oAuth2Client = new OAuth2Client(
