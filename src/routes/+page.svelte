@@ -1,23 +1,8 @@
 <script lang="ts">
-	import { parse } from 'svelte/compiler';
-
-	let number: Number | undefined;
-
-	async function roll() {
-		const response = await fetch('/roll');
-		number = await response.json();
-	}
-
-	export let data;
 	export let form;
 </script>
 
 <h1>Discard Home</h1>
-
-<button on:click={roll}>Roll</button>
-{#if number !== undefined}
-	<p>You rolled a {number}</p>
-{/if}
 
 <div class="wrapper">
 	<div class="forms">
@@ -74,6 +59,23 @@
 			</form>
 		</div>
 		<div class="form-container">
+			<h2>Get messages of user</h2>
+			<form method="POST" action="?/getMessagesByUser">
+				<div>
+					<label for="userid">User ID:</label>
+					<input
+						name="userid"
+						type="text"
+						placeholder="Enter your user ID"
+						autocomplete="off"
+						value="a4edf1dd-e468-443f-a4db-bcc408e84d7d"
+					/>
+				</div>
+
+				<input type="submit" value="Get" />
+			</form>
+		</div>
+		<div class="form-container">
 			<h2>Delete user</h2>
 			<form method="POST" action="?/deleteUser">
 				<div>
@@ -92,7 +94,7 @@
 		</div>
 	</div>
 	<div class="output">
-		{#if form?.success || !form?.success}
+		{#if form !== undefined}
 			<pre>{JSON.stringify(JSON.parse(form?.body ?? '0'), null, '\t')}</pre>
 		{/if}
 	</div>

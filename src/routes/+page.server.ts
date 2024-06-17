@@ -42,6 +42,25 @@ export const actions: Actions = {
 
 		return successfulResponse(json, response.status);
 	},
+	getMessagesByUser: async ({ request }) => {
+		const data: FormData = await request.formData();
+		const id = data.get('userid');
+
+		const response: Response = await fetch(
+			env.API_URL + '/message/user/' + id,
+			{
+				method: 'GET'
+			}
+		);
+
+		const json = await response.json();
+
+		if (!response.ok) {
+			return failedResponse(json, response.status);
+		}
+
+		return successfulResponse(json, response.status);
+	},
 	deleteUser: async ({ request }) => {
 		const data: FormData = await request.formData();
 		const id = data.get('userid');
@@ -64,10 +83,7 @@ export const actions: Actions = {
 	}
 };
 
-export const successfulResponse = (
-	json: unknown,
-	status: number
-): CustomResponse => {
+const successfulResponse = (json: unknown, status: number): CustomResponse => {
 	return {
 		success: true,
 		status: status,
@@ -75,10 +91,7 @@ export const successfulResponse = (
 	};
 };
 
-export const failedResponse = (
-	json: unknown,
-	status: number
-): CustomResponse => {
+const failedResponse = (json: unknown, status: number): CustomResponse => {
 	return {
 		success: false,
 		status: status,
